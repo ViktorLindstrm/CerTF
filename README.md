@@ -11,6 +11,8 @@ Prettier and more info regarding challenges are also in the making.
 Some of the challenges are more "real" than other, little regard has been taken
 to this to be "real" cases.
 
+Challenges has flag format: certf{FLAG}
+
 First
 -----
 The first challenge is a story of how to authenticate users. 

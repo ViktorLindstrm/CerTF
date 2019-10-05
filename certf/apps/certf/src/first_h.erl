@@ -10,7 +10,7 @@ init(Req0, Opts) ->
     Cert = cowboy_req:cert(Req0),
     Resp = case Cert of 
         undefined -> 
-            <<"Sorry, no luck today">>;
+            <<"Client authentication needed">>;
         Cert ->
             EncCert = public_key:pkix_decode_cert(Cert,otp),
             NCert = EncCert#'OTPCertificate'.tbsCertificate,
@@ -22,7 +22,7 @@ init(Req0, Opts) ->
                 ?Name -> 
                     <<"certif{certified_awesome}">>;
                 _ ->
-                    <<"close but no cigar">>
+                    <<"Bad Client authentication">>
             end
                     
 
