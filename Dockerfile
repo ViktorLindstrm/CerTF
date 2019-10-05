@@ -1,5 +1,9 @@
 FROM erlang:alpine
 
+RUN apk update &&\
+        apk add git
+
+   
 # Set working directory
 RUN mkdir /buildroot
 WORKDIR /buildroot
@@ -24,4 +28,4 @@ COPY --from=0 /buildroot/certf/_build/prod/rel/certf /certf
 # Expose relevant ports
 EXPOSE 4437
 
-CMD ["/dceertf/bin/certf", "foreground"]
+CMD ["/certf/bin/certf", "foreground"]
