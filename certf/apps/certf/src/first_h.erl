@@ -16,16 +16,15 @@ init(Req0, Opts) ->
             NCert = EncCert#'OTPCertificate'.tbsCertificate,
             Subject = NCert#'OTPTBSCertificate'.subject,
             {rdnSequence,Sub} = Subject,
-            io:format("Sub ~p~n",[Sub]),
-            LSub = erlang:binary_to_list(find_subject(Sub)),
-            case LSub of 
+            NSub = find_subject(Sub),
+            case NSub of 
                 ?Name -> 
+                    <<"certif{certified_awesome}">>;
+                <<?Name>> -> 
                     <<"certif{certified_awesome}">>;
                 _ ->
                     <<"Bad Client authentication">>
             end
-                    
-
     end,
     io:format("Cert: ~p~n",[Resp]),
 	Req = cowboy_req:reply(200, #{
