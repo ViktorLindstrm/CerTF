@@ -20,7 +20,13 @@ Second
 ------
 Pinning on the SKI might be a good idea.
 
+Build
+-----
+Create docker image with: 
 ```
 docker build -t certf .         
+```
+Run the docker container with: 
+```
 docker run -d -p 4437:4437 certf
 ```
