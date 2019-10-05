@@ -8,8 +8,8 @@
 -define(Name,"viktor").
 init(Req0, Opts) ->
     Resp = <<"<ul>
-    <li>first -> CN /missing validation</li>
-    <li>second -> invalid with valid SKI /pinning</li>
+    <li><a href=\"/first\"> first -> CN /missing validation</a></li>
+    <li><a href=\"/second\"> second -> invalid with valid SKI /pinning</a></li>
     <li>third -> invalid chain validation (issuer, not AKI-SKI)</li>
     <li>fourth -> policy not validated (ServerCA issuing client certs)</li>
              </ul> ">>,
