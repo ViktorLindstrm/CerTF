@@ -14,7 +14,8 @@ start(_Type, _Args) ->
     logger:debug("~p~n~n",["hello"]),
 	Dispatch = cowboy_router:compile([
 		{'_', [
-			{"/", first_h, []},
+			{"/", main_h, []},
+			{"/first", first_h, []},
 			{"/second", second_h, []}
 		]}
 	]),
