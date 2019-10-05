@@ -5,7 +5,7 @@
 
 -export([init/2]).
 -include_lib("public_key/include/public_key.hrl"). 
--define(Name,"viktor").
+-define(Name,"charles").
 init(Req0, Opts) ->
     Cert = cowboy_req:cert(Req0),
     Resp = case Cert of 

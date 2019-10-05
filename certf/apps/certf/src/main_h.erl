@@ -7,7 +7,15 @@
 -include_lib("public_key/include/public_key.hrl"). 
 -define(Name,"viktor").
 init(Req0, Opts) ->
-    Resp = <<"<ul>
+    Resp = <<"<h1>Certification For Everyone</h1>
+    <p>Our company aims to provide certification for everyone!</p>
+    <p>The company is run by three persons, <br>
+    Ada, Developent responsible<br>
+    Alan, Policy and compliance officer<br>
+    Charles, Data privacy officer, because GDPR everywhere<br>
+    </p>
+    
+    <ul>
     <li><a href=\"/first\"> first -> CN /missing validation</a></li>
     <li><a href=\"/second\"> second -> invalid with valid SKI /pinning</a></li>
     <li>third -> invalid chain validation (issuer, not AKI-SKI)</li>
