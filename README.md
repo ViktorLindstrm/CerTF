@@ -15,6 +15,7 @@ First
 -----
 The first challenge is a story of how to authenticate users. 
 Client authentication without authenticating the validity of the certificate
+
 Second
 ------
 Pinning on the SKI might be a good idea.
