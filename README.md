@@ -34,3 +34,8 @@ Run the docker container with:
 ```
 docker run -d -p 4437:4437 certf
 ```
+
+The host is now runnign at port 4437, visit:
+```
+https://localhost:4437
+```
