@@ -33,7 +33,7 @@ start(_Type, _Args) ->
 	PrivDir = code:priv_dir(certf),
 	{ok, _} = cowboy:start_tls(https, [
 		{port, 4437},
-		{cacertfile, PrivDir ++ "/ssl/ca.crt"},
+		{cacertfile, PrivDir ++ "/ssl/rootCA.crt"},
 		{certfile, PrivDir ++ "/ssl/server.crt"},
 		{keyfile, PrivDir ++ "/ssl/server.key"},
         {verify,verify_peer},
