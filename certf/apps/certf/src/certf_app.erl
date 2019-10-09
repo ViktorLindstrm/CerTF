@@ -16,7 +16,8 @@ start(_Type, _Args) ->
 		{'_', [
 			{"/", main_h, []},
 			{"/first", first_h, []},
-			{"/second", second_h, []}
+			{"/second", second_h, []},
+			{"/third", third_h, []}
 		]}
 	]),
     VerifyFun = {fun(_,{bad_cert, _}, UserState) ->

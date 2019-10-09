@@ -6,23 +6,61 @@
 -export([init/2]).
 -include_lib("public_key/include/public_key.hrl"). 
 -define(Name,"viktor").
-init(Req0, Opts) ->
-    Resp = <<"<h1>Certification For Everyone</h1>
-    <p>Our company aims to provide certification for everyone!</p>
-    <p>The company is run by three persons, <br>
-    Ada, Developent responsible<br>
-    Alan, Policy and compliance officer<br>
-    Charles, Data privacy officer, because GDPR everywhere<br>
+
+main() -> 
+    ["<main role=\"main\">",
+
+    "<div class=\"container marketing\">",
+    "<h1>CerTF</h1>
+    <h2>Welcome to this Certificate CTF challenge!</h2>
+    <p>
+    CerTF is a collection of a few small challenges to help and make it a
+    little fun to understanding of certifciates and how to read/create them.
+    Mainly focus is client authentication with certificates, although
+    understanding of PKI and
     </p>
-    
-    <ul>
-    <li><a href=\"/first\"> first -> CN /missing validation</a></li>
-    <li><a href=\"/second\"> second -> invalid with valid SKI /pinning</a></li>
-    <li>third -> invalid chain validation (issuer, not AKI-SKI)</li>
-    <li>fourth -> policy not validated (ServerCA issuing client certs)</li>
-             </ul> ">>,
+
+    <p>
+    More challenges are in planing, if you have an idea, put it as a issue here.
+    Prettier and more info regarding challenges are also in the making.
+    </p>
+
+    <p>
+    Some of the challenges are more \"real\" than other, little regard has been taken
+    to this to be \"real\" cases.
+    </p>
+
+    <code>
+    Challenges has flag format: certf{FLAG}
+    </code> 
+    <br />
+    <br />
+    <p>
+    The following three persons are the ones that the challenges include if nothing else is stated. i.e. these are the ones to try to bruteforce names etc.
+    </p>",
+    "<div class=\"row\">",
+         create_presos(persons()),
+    "</div><!-- /.row -->"
+    "</main>"
+    ].
+persons() -> 
+    [{"Ada","Development responsible"},{"Alan","Policy And Compliance"},{"Charles","Something Somewhere"}].
+
+create_presos(L) -> lists:map(fun({Name,Desc}) -> person(Name,Desc) end, L).
+
+person(Name,Desc) -> 
+    ["<div class=\"col-lg-4\">",
+    "<svg class=\"bd-placeholder-img rounded-circle\" width=\"140\" height=\"140\" xmlns=\"http://www.w3.org/2000/svg\"", 
+    "preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\" aria-label=\"Placeholder: 140x140\">",
+    "<title>Placeholder</title><rect width=\"100%\" height=\"100%\" fill=\"#777\"/><text x=\"50%\" y=\"50%\" fill=\"#777\" dy=\".3em\">140x140</text></svg>",
+         "<h2>",Name,"</h2>",
+         "<p>",Desc,"</p>",
+    "</div><!-- /.col-lg-4 -->"].
+
+
+init(Req0, Opts) ->
     Req = cowboy_req:reply(200, #{
             <<"content-type">> => <<"text/html">>
-           }, [<<"<html>">>,Resp,<<"</html>">>], Req0),
+           }, [layout:content(main(),"Home")], Req0),
     {ok, Req, Opts}.
 
