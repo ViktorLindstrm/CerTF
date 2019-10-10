@@ -1,7 +1,8 @@
 FROM erlang:alpine
 
 RUN apk update &&\
-        apk add git
+        apk add git &&\
+        apk add openssl
 
    
 # Set working directory
@@ -11,8 +12,11 @@ WORKDIR /buildroot
 # Copy our Erlang test application
 COPY certf certf
 
+WORKDIR certf/apps/certf/priv
+RUN sh create_cert.sh
+
 # And build the release
-WORKDIR certf
+WORKDIR /buildroot/certf
 RUN rebar3 as prod release
 
 # Build stage 1

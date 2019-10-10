@@ -10,7 +10,7 @@ init(Req0, Opts) ->
     Cert = cowboy_req:cert(Req0),
     Resp = case Cert of 
         undefined -> 
-                   layout:content(challenge(),"First");
+                   layout:content(challenge(),"Second");
         Cert ->
             EncCert = public_key:pkix_decode_cert(Cert,otp),
             NCert = EncCert#'OTPCertificate'.tbsCertificate,

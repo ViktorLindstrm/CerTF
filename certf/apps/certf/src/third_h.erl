@@ -11,14 +11,15 @@ init(Req0, Opts) ->
     Cert = cowboy_req:cert(Req0),
     Resp = case Cert of 
                undefined -> 
-                   layout:content(challenge(),"Second");
+                   layout:content(challenge(),"Third");
                Cert ->
                    EncCert = public_key:pkix_decode_cert(Cert,otp),
                    NCert = EncCert#'OTPCertificate'.tbsCertificate,
                    Extensions = NCert#'OTPTBSCertificate'.extensions,
                    SKI = find_ski(Extensions,hd(Extensions)),
+                   Consult_SKI = get_ski_from_consult_crt(),
                    case SKI#'Extension'.extnValue of 
-                       ?SKI -> 
+                       Consult_SKI -> 
                            <<"certf{ski_pping_the_validation}">>;
                        _ ->
                            <<"Bad client authentication">>
@@ -29,13 +30,33 @@ init(Req0, Opts) ->
            }, [<<"<html>">>,Resp,<<"</html>">>], Req0),
     {ok, Req, Opts}.
 
+get_ski_from_consult_crt() -> 
+	PrivDir = code:priv_dir(certf),
+    CertPath = PrivDir++"/ssl/consult.crt",
+    {ok,PemBin} = file:read_file(CertPath),
+    PemEntries = public_key:pem_decode(PemBin),
+    {value, CertEntry} = lists:keysearch('Certificate', 1, PemEntries),
+    {_, DerCert, _} = CertEntry,
+    EncCert = public_key:pkix_decode_cert(DerCert,otp),
+    NCert = EncCert#'OTPCertificate'.tbsCertificate,
+    Extensions = NCert#'OTPTBSCertificate'.extensions,
+    {_,_,_,SKI} = find_ski(Extensions,hd(Extensions)),
+    SKI.
+
+get_consulut_crt() -> 
+	PrivDir = code:priv_dir(certf),
+    CertPath = PrivDir++"/ssl/consult.crt",
+    {ok,Cert} = file:read_file(CertPath),
+    HCert = binary:replace(Cert,<<"\n">>,<<"<br>">>,[global]),
+    ["<code>",HCert,"</code>"].
+
 
 challenge() -> ["<h2> Challenge 3 </h2>",
      "<p>
      The page requires User authentication through a Client certificate.<br>
-     You have found what seems to be a valid client certificate from a previous consultant, but upon closer inspection you see that the certificate is expired. <br>
+      <br>
      Can you use the information gathered from this certificate to gain access to the system?
-     </p>"].
+     </p>",get_consulut_crt()].
 
 find_ski(_,#'Extension'{extnID = Ex}=Out) when Ex == {2,5,29,14} -> 
     Out;
