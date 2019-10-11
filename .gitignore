@@ -1,5 +1,9 @@
 .rebar3
 _*
+.crt
+.key
+.pem
+.srl
 .eunit
 *.o
 *.beam
