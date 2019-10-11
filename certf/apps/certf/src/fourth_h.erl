@@ -32,9 +32,10 @@ init(Req0, Opts) ->
 
 challenge() -> ["<h2> Challenge 4 </h2>",
      "<p>
-     You have found a folder full with certificates, <br> see if you find anything usefull in there with what you can access the page with.<br>
-      <br>
-      <code><a href=/chal4.tar.gz>folder</a> </code>
+     You have found a folder full with certificates,
+     <br> see if you find anything usefull in there with what you can access the page with.<br>
+     <br>
+     <code> <a href=/chal4.tar.gz>folder</a> </code>
      </p>"].
 
 find_ski(_,#'Extension'{extnID = Ex}=Out) when Ex == {2,5,29,14} -> 
