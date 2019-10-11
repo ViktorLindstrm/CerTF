@@ -13,7 +13,10 @@ WORKDIR /buildroot
 COPY certf certf
 
 WORKDIR certf/apps/certf/priv
+RUN sh setup.sh
 RUN sh create_cert.sh
+WORKDIR chal4
+RUN sh chal4.sh
 
 # And build the release
 WORKDIR /buildroot/certf

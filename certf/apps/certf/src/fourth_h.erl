@@ -18,7 +18,7 @@ init(Req0, Opts) ->
                    EncCert = public_key:pkix_decode_cert(RootCert,otp),
                    case public_key:pkix_is_issuer(Cert,EncCert) and (InputSKI == SKI) of 
                        true -> 
-                           <<"certf{ski_pping_the_validation}">>;
+                           <<"certf{best_in_pairs}">>;
                        _ ->
                            <<"Bad client authentication">>
                    end

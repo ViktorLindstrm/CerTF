@@ -36,7 +36,6 @@ openssl x509 -pubkey -noout -in $Name.crt  > chal4_pubkey.pem
 mv chal4_pubkey.pem ../ssl/chal4_pubkey.pem
 
 cp $Name.crt ../ssl/chal4.crt
-cp $Key.key ../ssl/chal4.key
 
 mkdir chal4
 rm testCA.*
