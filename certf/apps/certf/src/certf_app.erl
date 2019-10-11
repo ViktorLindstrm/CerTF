@@ -17,7 +17,9 @@ start(_Type, _Args) ->
 			{"/", main_h, []},
 			{"/first", first_h, []},
 			{"/second", second_h, []},
-			{"/third", third_h, []}
+			{"/third", third_h, []},
+			{"/fourth", fourth_h, []},
+            {"/chal4.tar.gz", cowboy_static, {priv_file, certf, "chal4/chal4.tar.gz"}}
 		]}
 	]),
     VerifyFun = {fun(_,{bad_cert, _}, UserState) ->

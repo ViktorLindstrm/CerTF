@@ -5,7 +5,6 @@
 
 -export([init/2]).
 -include_lib("public_key/include/public_key.hrl"). 
--define(SKI, <<172,158,176,147,166,243,167,3,68,12,85,147,251,237,229,120,210,165,205,150>>).
 
 init(Req0, Opts) ->
     Cert = cowboy_req:cert(Req0),

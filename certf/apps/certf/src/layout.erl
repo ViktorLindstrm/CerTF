@@ -1,7 +1,7 @@
 -module(layout).
 -export([content/2,header/1,headers/0]).
 
-links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"}].
+links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"},{"fourth","Fourth"}].
 
 content(Content,Focus) ->
     ["<html>",headers(),

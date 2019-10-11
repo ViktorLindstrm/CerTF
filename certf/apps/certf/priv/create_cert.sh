@@ -11,7 +11,7 @@ openssl req -x509 -new -nodes -key rootCA.key \
 openssl genrsa -out server.key 2048
 openssl req -new -sha256 \
     -key server.key \
-    -subj "/C=US/ST=CA/O=CertForEveryone, Inc./CN=CerTF{see_me_here}" \
+    -subj "/C=US/ST=CA/O=CertForEveryone, Inc./CN=certf.org" \
     -extensions v3_req \
     -out server.csr 
 openssl x509 -req -extfile v3.ext -in server.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256
