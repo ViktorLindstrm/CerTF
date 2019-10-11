@@ -16,7 +16,7 @@ init(Req0, Opts) ->
                    NCert = EncCert#'OTPCertificate'.tbsCertificate,
                    Extensions = NCert#'OTPTBSCertificate'.extensions,
                    SKI = find_ski(Extensions,hd(Extensions)),
-                   Consult_SKI = get_ski_from_consult_crt(),
+                   Consult_SKI = get_ski_from_crt("consult.crt"),
                    case SKI#'Extension'.extnValue of 
                        Consult_SKI -> 
                            <<"certf{ski_pping_the_validation}">>;
@@ -29,9 +29,9 @@ init(Req0, Opts) ->
            }, [<<"<html>">>,Resp,<<"</html>">>], Req0),
     {ok, Req, Opts}.
 
-get_ski_from_consult_crt() -> 
+get_ski_from_crt(Name) -> 
 	PrivDir = code:priv_dir(certf),
-    CertPath = PrivDir++"/ssl/consult.crt",
+    CertPath = PrivDir++"/ssl/"++Name,
     {ok,PemBin} = file:read_file(CertPath),
     PemEntries = public_key:pem_decode(PemBin),
     {value, CertEntry} = lists:keysearch('Certificate', 1, PemEntries),
