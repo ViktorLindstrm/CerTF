@@ -52,10 +52,14 @@ get_consulut_crt() ->
 
 challenge() -> ["<h2> Challenge 3 </h2>",
      "<p>
-     The page requires User authentication through a Client certificate.<br>
+     The page requires User authentication through a Client certificate. And
+     this time, we have made sure not to be as trivial as the previous
+     challenge. State of the art, Pinning! <br>
       <br>
-     Can you use the information gathered from this certificate to gain access to the system?
-     </p>",get_consulut_crt()].
+     <i>You have found a certificate that you know works, but you don't have the key. 
+     Can you use the information gathered from this certificate to gain access to the system? <br>
+     Pinning, but what has they pinned on?
+     </i></p>",get_consulut_crt()].
 
 find_ski(_,#'Extension'{extnID = Ex}=Out) when Ex == {2,5,29,14} -> 
     Out;

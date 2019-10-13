@@ -34,9 +34,10 @@ init(Req0, Opts) ->
 challenge() ->
     ["<h2> Challenge 2 </h2>",
      "<p>
-    The page requires User authentication through a Client certificate.<br>
-    What if the client validation is not sufficient? <br>
-    Maybe there is a way of trick the system to think you are someone you are not.<br> Try crafting a certificate that get past the validation checks.
+    To access this page, we need to know you are the employees, you will need a client certificate to proove that.<br>
+    <i>What does the client certifciate validation mean? Maybe it is not the certificate that is validated <br>
+    Maybe there is a way of trick the system to think you are someone you are not.<br> 
+    Try crafting a certificate that get past the validation checks.</i>
     </p>"].
 
 find_subject([[{_,_,C}] = H|T]) -> 

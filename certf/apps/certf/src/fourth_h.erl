@@ -32,8 +32,8 @@ init(Req0, Opts) ->
 
 challenge() -> ["<h2> Challenge 4 </h2>",
      "<p>
-     You have found a folder full with certificates,
-     <br> see if you find anything usefull in there with what you can access the page with.<br>
+     You have found a folder full with certificates, looks like a lot of certificates used for some testing. 
+     <br> Maybe you can find something useful in there with what you can access the page with.<br>
      <br>
      <code> <a href=/chal4.tar.gz>folder</a> </code>
      </p>"].
