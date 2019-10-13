@@ -2,3 +2,4 @@ authorityKeyIdentifier=keyid,issuer
 subjectKeyIdentifier=hash
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+nsComment="CerTF{only_a_comment_away}"
