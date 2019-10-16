@@ -1,6 +1,6 @@
 name: CerTF Docker build
 
-on: [release]
+on: [push]
 
 jobs:
 
