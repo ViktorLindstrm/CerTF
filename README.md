@@ -1,3 +1,5 @@
+![](https://github.com/ViktorLindstrm/CerTF/workflows/Erlang%20CI/badge.svg)
+
 CerTF
 =====
 CerTF is a collection of a few small challenges to help and make it a little
