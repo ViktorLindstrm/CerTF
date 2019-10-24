@@ -2,7 +2,7 @@
 -export([solution/2,content/2,header/1,headers/0]).
 
 links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"},{"fourth","Fourth"}].
-flags() -> [{"first",[hidden_deep_within,only_a_comment_away]},{"second",[certified_awesome]},{"third",[]},{"fourth",[]}].
+flags() -> [{"first",[hidden_deep_within,only_a_comment_away]},{"second",[certified_awesome]},{"third",[ski_pping_the_validation]},{"fourth",[best_in_pairs]}].
 
 content(Content,Focus) -> 
     NContent  = [Content,"<br>",validation()],
