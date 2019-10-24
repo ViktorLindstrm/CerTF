@@ -61,6 +61,6 @@ person(Name,Desc) ->
 init(Req0, Opts) ->
     Req = cowboy_req:reply(200, #{
             <<"content-type">> => <<"text/html">>
-           }, [layout:content(main(),"Home")], Req0),
+           }, [layout:content_sol(main(),"Home")], Req0),
     {ok, Req, Opts}.
 
