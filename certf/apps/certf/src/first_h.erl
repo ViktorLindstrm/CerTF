@@ -89,9 +89,6 @@ solution(false) ->
     layout:content(bad_flag(),"First");
 
 solution(hidden_deep_within) -> 
-    layout:content(good_flag(),"First");
-
-solution(only_a_comment_away) -> 
     layout:content(good_flag(),"First").
 
 
