@@ -1,9 +1,14 @@
 -module(layout).
--export([content/2,header/1,headers/0]).
+-export([solution/2,content/2,header/1,headers/0]).
 
 links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"},{"fourth","Fourth"}].
+flags() -> [{"first",[hidden_deep_within,only_a_comment_away]},{"second",[certified_awesome]},{"third",[]},{"fourth",[]}].
 
-content(Content,Focus) ->
+content(Content,Focus) -> 
+    NContent  = [Content,"<br>",validation()],
+    content_sol(NContent,Focus).
+
+content_sol(Content,Focus) ->
     ["<html>",headers(),
     "<body>",
      layout:header(Focus),
@@ -11,6 +16,12 @@ content(Content,Focus) ->
      "</body>",
      "</html>"
     ].
+
+validation() ->     
+"<form method=\"post\">
+        <input type=\"text\" name=\"flag\" placeholder=\"CerTF{flag}\">
+        <button type=\"submit\" class=\"btn btn-primary\">Submit</button>
+    </form>".
 
 list_item({{Url,Name}, Focus}) -> 
     case Focus of
@@ -82,3 +93,26 @@ headers() ->
       }
     </style>",
     "</head>"].
+
+
+bad_flag() ->
+    ["<h2> Bad Flag </h2>"].
+
+good_flag() ->
+    ["<h2> Success! </h2>","
+    <p>
+    Congratulations! Correct flag!
+    </p>
+     "
+    ].
+
+solution(Challenge,BinFlag) -> 
+    [_,Flag] = string:lexemes(binary_to_list(BinFlag),"{}"),
+    {_,Flags} = lists:keyfind(Challenge,1,flags()),
+    Result = case lists:member(list_to_atom(Flag),Flags) of 
+                 true -> 
+                     good_flag();
+                 false -> 
+                     bad_flag()
+             end,
+    content_sol(Result,Challenge).
