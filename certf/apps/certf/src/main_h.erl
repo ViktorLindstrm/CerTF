@@ -15,9 +15,9 @@ main() ->
     <h2>Welcome to this Certificate CTF challenge!</h2>
     <p>
     CerTF is a collection of a few small challenges to help and make it a
-    little fun to understanding of certifciates and how to read/create them.
+    little fun to understanding of certificates and how to read/create them.
     Mainly focus is client authentication with certificates, although
-    understanding of PKI and
+    understanding of PKI and certificates
     </p>
 
     <p>
