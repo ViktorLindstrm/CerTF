@@ -7,6 +7,20 @@
 -include_lib("public_key/include/public_key.hrl"). 
 
 init(Req0, Opts) ->
+    Method = cowboy_req:method(Req0),
+    page(Method,Req0,Opts).
+
+page(<<"POST">>,Req0,Opts) -> 
+    {ok, PostVals, Req} = cowboy_req:read_urlencoded_body(Req0),
+    Flag = proplists:get_value(<<"flag">>, PostVals),
+    Resp = layout:solution("fourth",Flag),
+    Req2 = cowboy_req:reply(200, #{
+            <<"content-type">> => <<"text/html">>
+           }, [Resp], Req),
+    {ok, Req2, Opts};
+
+
+page(<<"GET">>,Req0,Opts) -> 
     Cert = cowboy_req:cert(Req0),
     Resp = case Cert of 
                undefined -> 
@@ -27,8 +41,6 @@ init(Req0, Opts) ->
             <<"content-type">> => <<"text/html">>
            }, [<<"<html>">>,Resp,<<"</html>">>], Req0),
     {ok, Req, Opts}.
-
-
 
 challenge() -> ["<h2> Challenge 4 </h2>",
      "<p>
