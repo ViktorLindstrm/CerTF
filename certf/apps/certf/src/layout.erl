@@ -84,6 +84,7 @@ headers() ->
     /* Move down content because we have a fixed navbar that is 3.5rem tall */
     body {
       padding-top: 7rem;
+      padding: 7rem;
     }
 
       @media (min-width: 768px) {
