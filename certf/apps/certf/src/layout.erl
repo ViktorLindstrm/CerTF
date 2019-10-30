@@ -1,8 +1,8 @@
 -module(layout).
--export([solution/2,content/2,content_sol/2,header/1,headers/0]).
+-export([solution/2,solution/3,content/2,content_sol/2,header/1,headers/0]).
 
-links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"},{"fourth","Fourth"}].
-flags() -> [{"first",[hidden_deep_within,only_a_comment_away]},{"second",[certified_awesome]},{"third",[ski_pping_the_validation]},{"fourth",[best_in_pairs]}].
+links() -> [{"","Home"},{"first","First"},{"second","Second"},{"third","Third"},{"fourth","Fourth"},{"fifth","Fifth"}].
+flags() -> [{"first",[hidden_deep_within,only_a_comment_away]},{"second",[certified_awesome]},{"third",[ski_pping_the_validation]},{"fourth",[best_in_pairs]},{"fifth",[issued_in_vain]}].
 
 content(Content,Focus) -> 
     NContent  = [Content,"<br>",validation()],
@@ -108,12 +108,15 @@ good_flag() ->
     ].
 
 solution(Challenge,BinFlag) -> 
+    solution(Challenge,BinFlag,[]).
+solution(Challenge,BinFlag,Solution) -> 
     [_,Flag] = string:lexemes(binary_to_list(BinFlag),"{}"),
     {_,Flags} = lists:keyfind(Challenge,1,flags()),
-    Result = case lists:member(list_to_atom(Flag),Flags) of 
+    GoodBad = case lists:member(list_to_atom(Flag),Flags) of 
                  true -> 
                      good_flag();
                  false -> 
                      bad_flag()
              end,
+    Result=[GoodBad,"<br><br>",Solution],
     content_sol(Result,Challenge).

@@ -19,6 +19,7 @@ start(_Type, _Args) ->
 			{"/second", second_h, []},
 			{"/third", third_h, []},
 			{"/fourth", fourth_h, []},
+			{"/fifth", fifth_h, []},
             {"/chal4.tar.gz", cowboy_static, {priv_file, certf, "chal4/chal4.tar.gz"}}
 		]}
 	]),
