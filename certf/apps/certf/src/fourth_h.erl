@@ -13,7 +13,7 @@ init(Req0, Opts) ->
 page(<<"POST">>,Req0,Opts) -> 
     {ok, PostVals, Req} = cowboy_req:read_urlencoded_body(Req0),
     Flag = proplists:get_value(<<"flag">>, PostVals),
-    Resp = layout:solution("fourth",Flag),
+    Resp = layout:solution("fourth", Flag, sol()),
     Req2 = cowboy_req:reply(200, #{
             <<"content-type">> => <<"text/html">>
            }, [Resp], Req),
@@ -32,7 +32,7 @@ page(<<"GET">>,Req0,Opts) ->
                    EncCert = public_key:pkix_decode_cert(RootCert,otp),
                    case public_key:pkix_is_issuer(Cert,EncCert) and (InputSKI == SKI) of 
                        true -> 
-                           <<"certf{best_in_pairs}">>;
+                           <<"CerTF{best_in_pairs}">>;
                        _ ->
                            <<"Bad client authentication">>
                    end
@@ -75,3 +75,10 @@ get_ski_from_crt(Name) ->
     DerCert = get_der_crt(Name),
     get_ski(DerCert).
 
+sol() -> 
+    ["<p>Having certificates just laying around is never a good idea. <br>When
+    growing in number it is harder to keep track of what is what and it becomes
+    a real issue when environments are mixed or keys re-used. <br>The credentials
+    in this case are handled as if they were for testing environments, but
+    within those are also production environment keys. <br>But if anyone comes
+    looking, as you have proven, it will not take much to find the good parts</p>"].
