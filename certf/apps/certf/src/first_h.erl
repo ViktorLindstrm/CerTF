@@ -14,7 +14,7 @@ init(Req0, Opts) ->
 page(<<"POST">>,Req0,Opts) -> 
     {ok, PostVals, Req} = cowboy_req:read_urlencoded_body(Req0),
     Flag = proplists:get_value(<<"flag">>, PostVals),
-    Resp = layout:solution("first",Flag),
+    Resp = layout:solution("first",Flag,sol()),
     Req2 = cowboy_req:reply(200, #{
             <<"content-type">> => <<"text/html">>
            }, [Resp], Req),
@@ -36,3 +36,5 @@ challenge() ->
     </p>
      "].
 
+sol() -> 
+    ["<p>Not only the server certificate but also the intermediate and Root Certifcate are of importance</p>"].
