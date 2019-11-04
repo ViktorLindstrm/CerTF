@@ -13,7 +13,7 @@ init(Req0, Opts) ->
 page(<<"POST">>,Req0,Opts) ->
     {ok, PostVals, Req} = cowboy_req:read_urlencoded_body(Req0),
     Flag = proplists:get_value(<<"flag">>, PostVals),
-    Resp = layout:solution("third",Flag),
+    Resp = layout:solution("third",Flag, sol()),
     Req2 = cowboy_req:reply(200, #{
              <<"content-type">> => <<"text/html">>
             }, [Resp], Req),
@@ -79,3 +79,6 @@ find_ski(_,#'Extension'{extnID = Ex}=Out) when Ex == {2,5,29,14} ->
     Out;
 find_ski([_|T],_) ->
     find_ski(T,hd(T)).
+
+sol() -> 
+    ["<p>When doing pinning, it is important to know when to pin and on what. <br>See <a href=\"https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning\">OWASP Certificate and Public Key Pinning</a> for more information on how to do pinning properly and when to do it.</p>"].
