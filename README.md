@@ -13,7 +13,10 @@ Prettier and more info regarding challenges are also in the making.
 Some of the challenges are more "real" than other, little regard has been taken
 to this to be "real" cases.
 
-Challenges has flag format: certf{FLAG}
+Screenshot
+---------
+![](https://github.com/ViktorLindstrm/CerTF/raw/master/screenshot.png)
+
 
 Build
 -----
